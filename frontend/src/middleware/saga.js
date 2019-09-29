@@ -9,10 +9,10 @@ import { requestLogin } from './apis';
 
 function* authLogin({ payload }) {
   try {
-    const data = yield call(requestLogin(payload));
-    yield put(loginSuccess(data.results));
+    const data = yield call(requestLogin, payload);
+    yield put(loginSuccess(data.authorized));
   } catch (error) {
-    yield put(loginFailure(error));
+    yield put(loginFailure(error.message));
   }
 }
 

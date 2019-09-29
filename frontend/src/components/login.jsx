@@ -1,13 +1,14 @@
 import React from 'react';
+import { withRouter } from 'react-router';
+import { withStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import { withStyles } from '@material-ui/styles';
+
+import Loader from './loader';
 
 const styles = {
   '@global': {
@@ -16,19 +17,31 @@ const styles = {
     },
   },
   paper: {
-    marginTop: '100px',
+    marginTop: 100,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: '1px',
+    marginTop: 1,
+    textAlign: 'center',
+  },
+  fildset: {
+    border: 'none',
+  },
+  progress: {
+    marginTop: 10,
+  },
+  error: {
+    color: 'red',
   },
   submit: {
-    // margin: theme.spacing(3, 0, 2),
+    marginTop: 16,
   },
 };
+
+const ErrorMessage = ({ error }) => <h3 style={{ color: 'red' }}>{ error }</h3>;
 
 class Login extends React.Component {
   constructor(props) {
@@ -36,16 +49,51 @@ class Login extends React.Component {
     this.state = {
       username: '',
       password: '',
+      error: '',
     };
   }
 
-  handleChange = name => event => this.setState({ [name]: event.target.value });
+  componentWillReceiveProps(nextProps) {
+    const { auth: { error, isAuthorized } } = nextProps;
+    if (error) {
+      this.setState({ error: 'Invalid credential.' });
+    }
+    if (isAuthorized) {
+      this.setSession();
+    }
+  }
+
+  setSession = () => {
+    const { username } = this.state;
+    const { history } = this.props;
+    // eslint-disable-next-line no-undef
+    localStorage.setItem('latesha', JSON.stringify({
+      username,
+      isAuthorized: true,
+    }));
+    history.replace('/profile');
+  }
+
+  handleChange = name => event => this.setState({ [name]: event.target.value, error: '' });
 
   submit = (event) => {
     event.preventDefault();
 
     const { login } = this.props;
     const { username, password } = this.state;
+
+    this.setState({ error: '' });
+
+    if (!username) {
+      this.setState({ error: 'Username is required.' });
+      return;
+    }
+
+    if (!password) {
+      this.setState({ error: 'Password is required.' });
+      return;
+    }
+
     login({
       username,
       password,
@@ -53,52 +101,54 @@ class Login extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
-    const { username, password } = this.state;
+    const { classes, auth } = this.props;
+    const { username, password, error } = this.state;
     return (
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
-          <Typography component="h1" variant="h5">
-            Log in
-          </Typography>
-          <form className={classes.form} noValidate>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="name"
-              label="Name"
-              name="name"
-              value={username}
-              onChange={this.handleChange('username')}
-              autoComplete="name"
-              autoFocus
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="password"
-              name="password"
-              label="Password"
-              type="password"
-              value={password}
-              onChange={this.handleChange('password')}
-              autoComplete="current-password"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-              onClick={this.submit}
-            >
-              Sign In
-            </Button>
+          <form className={classes.form}>
+            <fieldset className={classes.fildset} disabled={auth.loading}>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="name"
+                label="Name"
+                name="name"
+                value={username}
+                onChange={this.handleChange('username')}
+                autoComplete="name"
+                autoFocus
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="password"
+                name="password"
+                label="Password"
+                type="password"
+                value={password}
+                onChange={this.handleChange('password')}
+                autoComplete="current-password"
+              />
+              <Loader loading={auth.loading} />
+              <ErrorMessage error={error} />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                onClick={this.submit}
+                disabled={auth.loading}
+              >
+                Sign In
+              </Button>
+            </fieldset>
           </form>
         </div>
       </Container>
@@ -106,9 +156,15 @@ class Login extends React.Component {
   }
 }
 
-Login.propTypes = {
+ErrorMessage.propTypes = {
+  error: PropTypes.string,
+};
+
+Login.propTypes = { 
+  auth: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
   login: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(Login);
+export default withRouter(withStyles(styles)(Login));
