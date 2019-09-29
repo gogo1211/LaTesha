@@ -1,5 +1,6 @@
 class ContactsController < ApplicationController
   def index
+    sleep 3
     render json: [
       { id: 1, name: 'Ryder King', email: 'ryder.king@fsstudio.com' },
       { id: 2, name: 'Daniel Havelka', email: 'daniel707@yahoo.com' },
