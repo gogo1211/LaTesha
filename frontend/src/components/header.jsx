@@ -15,6 +15,7 @@ class Header extends React.Component {
               LaTesha
             </Typography>
             <Button component={Link} to="/" color="inherit">Home</Button>
+            <Button component={Link} to="/login" color="inherit">Login</Button>
             <Button component={Link} to="/contacts" color="inherit">Contacts</Button>
             <Button component={Link} to="/profile" color="inherit">Profile</Button>
           </Toolbar>
