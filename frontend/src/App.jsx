@@ -13,7 +13,7 @@ import Header from './containers/header';
 import Home from './containers/home';
 import Login from './containers/login';
 import Contacts from './components/contacts';
-import Profile from './components/profile';
+import Profile from './containers/profile';
 import './App.scss';
 
 function App() {
