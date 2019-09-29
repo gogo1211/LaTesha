@@ -1,0 +1,12 @@
+@import './style/index.scss';
+
+.App {
+  position: absolute;
+  top: 64px;
+  left: 0px;
+  right: 0;
+}
+
+.title {
+  flex-grow: 1;
+}
