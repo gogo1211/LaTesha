@@ -1,4 +1,5 @@
 # LaTesha
 
-Backend: RoR REST API
-Fontend: React
+Backend: **RoR REST API**
+
+Fontend: **React**
