@@ -1,12 +1,18 @@
-import { createAction, createActionType } from './utils';
+import createActionType from './utils';
 
 export const AUTH_LOGIN = createActionType('AUTH_LOGIN');
 
-export const login = data => createAction({
-  type: AUTH_LOGIN,
-  action: () => checkLogin(data),
+export const loginRequest = payload => ({
+  type: AUTH_LOGIN.REQUEST,
+  payload,
 });
 
-const checkLogin = ({ username, password }) => {
-  return true;
-};
+export const loginSuccess = payload => ({
+  type: AUTH_LOGIN.SUCCESS,
+  payload,
+});
+
+export const loginFailure = error => ({
+  type: AUTH_LOGIN.FAILURE,
+  error,
+});

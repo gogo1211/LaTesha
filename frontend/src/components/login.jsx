@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -30,9 +31,30 @@ const styles = {
 };
 
 class Login extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '',
+      password: '',
+    };
+  }
+
+  handleChange = name => event => this.setState({ [name]: event.target.value });
+
+  submit = (event) => {
+    event.preventDefault();
+
+    const { login } = this.props;
+    const { username, password } = this.state;
+    login({
+      username,
+      password,
+    });
+  }
 
   render() {
     const { classes } = this.props;
+    const { username, password } = this.state;
     return (
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -49,6 +71,8 @@ class Login extends React.Component {
               id="name"
               label="Name"
               name="name"
+              value={username}
+              onChange={this.handleChange('username')}
               autoComplete="name"
               autoFocus
             />
@@ -57,31 +81,34 @@ class Login extends React.Component {
               margin="normal"
               required
               fullWidth
+              id="password"
               name="password"
               label="Password"
               type="password"
-              id="password"
+              value={password}
+              onChange={this.handleChange('password')}
               autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
             />
             <Button
               type="submit"
-              m={2}
               fullWidth
               variant="contained"
               color="primary"
               className={classes.submit}
+              onClick={this.submit}
             >
               Sign In
             </Button>
           </form>
         </div>
       </Container>
-    )
-  };
+    );
+  }
 }
+
+Login.propTypes = {
+  classes: PropTypes.object.isRequired,
+  login: PropTypes.func.isRequired,
+};
 
 export default withStyles(styles)(Login);

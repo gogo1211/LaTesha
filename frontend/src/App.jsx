@@ -10,7 +10,7 @@ import store from './store';
 
 import Header from './components/header';
 import Home from './components/home';
-import Login from './components/login';
+import Login from './containers/login';
 import Contacts from './components/contacts';
 import Profile from './components/profile';
 import './App.scss';
