@@ -12,7 +12,7 @@ import PrivateRoute from './containers/private-route';
 import Header from './containers/header';
 import Home from './containers/home';
 import Login from './containers/login';
-import Contacts from './components/contacts';
+import Contacts from './containers/contacts';
 import Profile from './containers/profile';
 import './App.scss';
 
@@ -25,7 +25,7 @@ function App() {
           <Switch>
             <Route exact path="/login" component={Login} />
             <Route exact path="/home" component={Home} />
-            <PrivateRoute exact path="/contacts" component={Contacts} />
+            <Route exact path="/contacts" component={Contacts} />
             <PrivateRoute exact path="/profile" component={Profile} />
             <Redirect from="/" to="/home" />
           </Switch>

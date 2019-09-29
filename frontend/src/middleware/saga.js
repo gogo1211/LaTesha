@@ -4,8 +4,11 @@ import {
   AUTH_LOGIN,
   loginSuccess,
   loginFailure,
+  CONTACTS_FETCH,
+  fetchContactsSuccess,
+  fetchContactsFailure,
 } from '../actions';
-import { requestLogin } from './apis';
+import { requestLogin, requestFetchContacts } from './apis';
 
 function* authLogin({ payload }) {
   try {
@@ -16,6 +19,16 @@ function* authLogin({ payload }) {
   }
 }
 
+function* fetchContacts() {
+  try {
+    const data = yield call(requestFetchContacts);
+    yield put(fetchContactsSuccess(data));
+  } catch (error) {
+    yield put(fetchContactsFailure(error.message));
+  }
+}
+
 export default function* latesha() {
   yield takeLatest(AUTH_LOGIN.REQUEST, authLogin);
+  yield takeLatest(CONTACTS_FETCH.REQUEST, fetchContacts);
 }

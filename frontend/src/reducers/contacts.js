@@ -2,27 +2,25 @@ import * as ActionTypes from '../actions';
 
 const initialState = {
   loading: false,
-  isAuthorized: false,
-  username: '',
+  contacts: [],
   error: '',
 };
 
-const auth = (state = initialState, { type, payload, error }) => {
+const contacts = (state = initialState, { type, payload, error }) => {
   switch (type) {
-    case ActionTypes.AUTH_LOGIN.REQUEST:
+    case ActionTypes.CONTACTS_FETCH.REQUEST:
       return {
         ...state,
         loading: true,
         error: '',
       };
-    case ActionTypes.AUTH_LOGIN.SUCCESS:
+    case ActionTypes.CONTACTS_FETCH.SUCCESS:
       return {
         ...state,
         loading: false,
-        isAuthorized: payload.authorized,
-        username: payload.username,
+        contacts: payload,
       };
-    case ActionTypes.AUTH_LOGIN.FAILURE:
+    case ActionTypes.CONTACTS_FETCH.FAILURE:
       return {
         ...state,
         loading: false,
@@ -33,4 +31,4 @@ const auth = (state = initialState, { type, payload, error }) => {
   }
 };
 
-export default auth;
+export default contacts;

@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
 import Loader from './loader';
@@ -160,7 +159,7 @@ ErrorMessage.propTypes = {
   error: PropTypes.string,
 };
 
-Login.propTypes = { 
+Login.propTypes = {
   auth: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,

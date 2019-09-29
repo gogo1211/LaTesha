@@ -14,7 +14,7 @@ const Profile = ({ auth }) => {
   return (
     <div className={classes.heading}>
       <h2>
-        Logged in as:
+        Logged in as :
         { auth.username }
       </h2>
     </div>
