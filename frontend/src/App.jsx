@@ -8,7 +8,8 @@ import {
 import { Provider } from 'react-redux';
 import store from './store';
 
-import Header from './components/header';
+import PrivateRoute from './containers/private-route';
+import Header from './containers/header';
 import Home from './components/home';
 import Login from './containers/login';
 import Contacts from './components/contacts';
@@ -24,8 +25,8 @@ function App() {
           <Switch>
             <Route exact path="/login" component={Login} />
             <Route exact path="/home" component={Home} />
-            <Route exact path="/contacts" component={Contacts} />
-            <Route exact path="/profile" component={Profile} />
+            <PrivateRoute exact path="/contacts" component={Contacts} />
+            <PrivateRoute exact path="/profile" component={Profile} />
             <Redirect from="/" to="/home" />
           </Switch>
         </div>
