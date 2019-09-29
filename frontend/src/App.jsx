@@ -10,7 +10,7 @@ import store from './store';
 
 import PrivateRoute from './containers/private-route';
 import Header from './containers/header';
-import Home from './components/home';
+import Home from './containers/home';
 import Login from './containers/login';
 import Contacts from './components/contacts';
 import Profile from './components/profile';
