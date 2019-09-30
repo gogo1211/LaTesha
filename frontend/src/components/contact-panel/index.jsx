@@ -1,21 +1,23 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
-import Avatar from '@material-ui/core/Avatar';
-import Typography from '@material-ui/core/Typography';
-import Chip from '@material-ui/core/Chip';
-import Container from '@material-ui/core/Container';
-import { Button } from '@material-ui/core';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import Popover from '@material-ui/core/Popover';
-import InputBase from '@material-ui/core/InputBase';
+import {
+  Avatar,
+  Button,
+  Box,
+  Container,
+  Grid,
+  InputBase,
+  Typography,
+  Popover,
+} from '@material-ui/core';
 
 import AddIcon from '@material-ui/icons/Add';
 import CloseIcon from '@material-ui/icons/Close';
 import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
 
+import { Tag, AddTag } from './tags';
+import { Invite, Cancel, Delete } from './actions';
 import { InfoTabs, TabPanel } from './tabs';
 
 const styles = {
@@ -23,10 +25,8 @@ const styles = {
     width: '480px',
     height: '100%',
     textAlign: 'center',
-    // backgroundImage: 'url("./image/1.png")',
     backgroundSize: 'cover',
     overflow: 'hidden',
-    // opacity: 0.7,
   },
   avatar: {
     margin: '20px auto 0',
@@ -51,69 +51,6 @@ const styles = {
     height: '100%',
   },
 };
-
-const Tag = withStyles({
-  root: {
-    border: '1px solid #ececf4',
-    borderRadius: 10,
-    color: '#444ea5',
-    margin: 5,
-  },
-  deletable: {
-    '&:focus': {
-      backgroundColor: 'white !important',
-    },
-  },
-  deleteIcon: {
-    fontSize: '0.7rem',
-    color: '#ef3a39',
-  },
-})(Chip);
-
-const AddTag = withStyles({
-  root: {
-    width: 32,
-  },
-  label: {
-    paddingLeft: 0,
-  },
-  deleteIcon: {
-    fontSize: '1.5rem',
-    color: '#f07760',
-  },
-})(Tag);
-
-const Action = withStyles({
-  root: {
-    boxShadow: 'none',
-    textTransform: 'none',
-    margin: '0 10px',
-    padding: '8px 35px',
-    borderRadius: '10px',
-    fontSize: '1rem',
-  },
-})(Button);
-
-const Action1 = withStyles({
-  root: {
-    backgroundColor: '#ececf4',
-    color: '#444ea5',
-  },
-})(Action);
-
-const Action2 = withStyles({
-  root: {
-    backgroundColor: '#faeae8',
-    color: '#f07760',
-  },
-})(Action);
-
-const Action3 = withStyles({
-  root: {
-    backgroundColor: '#faeae8',
-    color: '#ef3a39',
-  },
-})(Action);
 
 const InfoItem = withStyles({
   box: {
@@ -222,9 +159,9 @@ const ContactPanel = ({ classes, item }) => {
         />
       </Container>
       <Container className={classes.actionContainer}>
-        <Action1 variant="contained">Invite</Action1>
-        <Action2 variant="contained">Cancel</Action2>
-        <Action3 variant="contained">Delete</Action3>
+        <Invite variant="contained">Invite</Invite>
+        <Cancel variant="contained">Cancel</Cancel>
+        <Delete variant="contained">Delete</Delete>
       </Container>
       <Container className={classes.infoContainer}>
         <InfoTabs
