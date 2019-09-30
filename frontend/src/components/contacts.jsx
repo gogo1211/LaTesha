@@ -9,8 +9,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Drawer from '@material-ui/core/Drawer';
-import Avatar from '@material-ui/core/Avatar';
 
+import ContactPanel from './contact-panel';
 import Loader from './loader';
 
 const columns = [
@@ -32,13 +32,6 @@ const styles = {
     width: '25vw',
     minWidth: '300px',
     textAlign: 'center',
-  },
-  avatar: {
-    margin: '30px auto',
-    width: '80px',
-    height: '80px',
-    color: 'white',
-    backgroundColor: 'darkorange',
   },
 };
 
@@ -71,17 +64,6 @@ class Contacts extends React.Component {
     selectedItem: item,
     open: true,
   });
-
-  getAvatarName = (name) => {
-    if (!name) {
-      return '?';
-    }
-    const nameSplit = name.toUpperCase().split(' ');
-    if (nameSplit.length === 1) {
-      return nameSplit[0] ? nameSplit[0].charAt(0) : '?';
-    }
-    return nameSplit[0].charAt(0) + nameSplit[1].charAt(0);
-  }
 
   render() {
     const { classes, loading, contacts } = this.props;
@@ -150,10 +132,7 @@ class Contacts extends React.Component {
           />
         </Paper>
         <Drawer anchor="right" open={open} onClose={() => this.setState({ open: false })}>
-          <div className={classes.drawer}>
-            <Avatar className={classes.avatar}>{this.getAvatarName(selectedItem.name)}</Avatar>
-            <h4>{ selectedItem.name }</h4>
-          </div>
+          <ContactPanel item={selectedItem} />
         </Drawer>
       </React.Fragment>
     );
