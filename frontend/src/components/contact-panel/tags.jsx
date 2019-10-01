@@ -23,9 +23,7 @@ const tagStyle = {
   },
 };
 
-export const Tag = withStyles(tagStyle)(Chip);
-
-export const AddTag = withStyles({
+const addTagStyle = {
   root: {
     width: 21,
   },
@@ -36,4 +34,7 @@ export const AddTag = withStyles({
     fontSize: '1rem',
     color: '#f07760',
   },
-})(Tag);
+};
+
+export const Tag = withStyles(tagStyle)(Chip);
+export const AddTag = withStyles(addTagStyle)(Tag);

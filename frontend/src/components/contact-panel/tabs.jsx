@@ -18,56 +18,54 @@ const useTabsStyles = makeStyles(() => ({
   },
 }));
 
-const useTabStyles = makeStyles(() => {
-  return {
-    root: ({ bgColor }) => ({
-      opacity: 1,
-      overflow: 'initial',
-      padding: '10px 15px',
-      borderTopLeftRadius: 8,
-      borderTopRightRadius: 8,
-      color: '#ACB5C3',
-      backgroundColor: bgColor,
+const useTabStyles = makeStyles(() => ({
+  root: ({ bgColor }) => ({
+    opacity: 1,
+    overflow: 'initial',
+    padding: '10px 15px',
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
+    color: '#ACB5C3',
+    backgroundColor: bgColor,
+    transition: '0.2s',
+    minWidth: 72,
+    '&:before': {
       transition: '0.2s',
-      minWidth: 72,
-      '&:before': {
-        transition: '0.2s',
+    },
+    '& + $selected:before': {
+      opacity: 0,
+    },
+    '&:hover': {
+      '&:not($selected)': {
+        backgroundColor: Color(bgColor)
+          .whiten(0.6)
+          .hex(),
       },
-      '& + $selected:before': {
+      '&::before': {
         opacity: 0,
-      },
-      '&:hover': {
-        '&:not($selected)': {
-          backgroundColor: Color(bgColor)
-            .whiten(0.6)
-            .hex(),
-        },
-        '&::before': {
-          opacity: 0,
-        },
-        '& + $root:before': {
-          opacity: 0,
-        },
-      },
-    }),
-    selected: ({ selectedBgColor }) => ({
-      backgroundColor: selectedBgColor,
-      color: '#272C5E',
-      '& + $root': {
-        zIndex: 1,
       },
       '& + $root:before': {
         opacity: 0,
       },
-    }),
-    wrapper: {
-      zIndex: 2,
-      fontFamily: 'CircularStd-Medium',
-      textTransform: 'initial',
-      fontSize: '0.875rem',
     },
-  };
-});
+  }),
+  selected: ({ selectedBgColor }) => ({
+    backgroundColor: selectedBgColor,
+    color: '#272C5E',
+    '& + $root': {
+      zIndex: 1,
+    },
+    '& + $root:before': {
+      opacity: 0,
+    },
+  }),
+  wrapper: {
+    zIndex: 2,
+    fontFamily: 'CircularStd-Medium',
+    textTransform: 'initial',
+    fontSize: '0.875rem',
+  },
+}));
 
 export const InfoTabs = ({
   tabs, tabStyle, tabProps, ...props
