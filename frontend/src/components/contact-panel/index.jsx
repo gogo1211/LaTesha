@@ -4,7 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 import {
   Avatar,
   Box,
-  Container,
   Grid,
   InputBase,
   Typography,
@@ -46,7 +45,11 @@ const styles = {
     fontFamily: 'CircularStd-Book',
     fontSize: '0.875rem',
     color: '#272C5E',
-    margin: '10px 0',
+    margin: '10px 0 11px',
+  },
+  tagContainer: {
+    display: 'flex',
+    justifyContent: 'center',
   },
   actionContainer: {
     marginBottom: 15,
@@ -156,7 +159,7 @@ const ContactPanel = ({ classes, item }) => {
       <Typography className={classes.name} variant="h6">
         { item.name }
       </Typography>
-      <Container>
+      <Box className={classes.tagContainer}>
         <Tag variant="outlined" deleteIcon={<CloseIcon />} label="HOST" onDelete={() => console.log('close')} />
         <Tag variant="outlined" deleteIcon={<CloseIcon />} label="ADMIN" onDelete={() => console.log('close')} />
         <Tag variant="outlined" deleteIcon={<CloseIcon />} label="TAG 3" onDelete={() => console.log('close')} />
@@ -168,7 +171,7 @@ const ContactPanel = ({ classes, item }) => {
             setPopover(true);
           }}
         />
-      </Container>
+      </Box>
       <Typography className={classes.email} variant="h6">
         { item.email }
       </Typography>
