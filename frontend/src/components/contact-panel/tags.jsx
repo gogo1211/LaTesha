@@ -1,12 +1,12 @@
 import { withStyles } from '@material-ui/styles';
 import Chip from '@material-ui/core/Chip';
 
-export const Tag = withStyles({
+const tagStyle = {
   root: {
     border: '1px solid #ececf4',
     borderRadius: 10,
     color: '#444ea5',
-    margin: 5,
+    margin: '0 2.5px',
   },
   deletable: {
     '&:focus': {
@@ -14,10 +14,12 @@ export const Tag = withStyles({
     },
   },
   deleteIcon: {
-    fontSize: '0.7rem',
-    color: '#ef3a39',
+    fontSize: '0.625rem',
+    color: '#FF7E5C',
   },
-})(Chip);
+};
+
+export const Tag = withStyles(tagStyle)(Chip);
 
 export const AddTag = withStyles({
   root: {

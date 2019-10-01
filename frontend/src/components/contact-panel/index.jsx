@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import {
   Avatar,
-  Button,
   Box,
   Container,
   Grid,
@@ -22,32 +21,39 @@ import { InfoTabs, TabPanel } from './tabs';
 
 const styles = {
   panel: {
-    width: '480px',
+    width: '350px',
     height: '100%',
     textAlign: 'center',
     backgroundSize: 'cover',
     overflow: 'hidden',
   },
   avatar: {
-    margin: '20px auto 0',
-    width: '90px',
-    height: '90px',
+    margin: '14px auto 0',
+    width: '65px',
+    height: '65px',
     color: 'white',
     backgroundColor: '#7f88b2',
-    borderRadius: '30px',
-    fontSize: '2.5em',
+    borderRadius: '20px',
+    fontSize: '1.75em',
   },
   name: {
-    margin: '12px 0 7px',
-    color: '#292e5d',
+    margin: '11px 0 10px',
+    fontFamily: 'CircularStd-Medium',
+    fontSize: '1rem',
+    color: '#272c5e',
+  },
+  email: {
+    fontFamily: 'CircularStd-Book',
+    fontSize: '0.875rem',
+    color: '#272C5E',
+    margin: '10px 0',
   },
   actionContainer: {
-    marginTop: 50,
-    marginBottom: 25,
+    marginBottom: 15,
   },
   infoContainer: {
-    padding: '25px 20px',
-    backgroundColor: '#f5f6fa',
+    padding: '15px 20px',
+    backgroundColor: '#F5F6FA',
     height: '100%',
   },
 };
@@ -58,33 +64,38 @@ const InfoItem = withStyles({
     padding: '0 0 10px 4px',
   },
   subtitle2: {
+    fontFamily: 'CircularStd-Medium',
+    fontSize: '0.625rem',
     textTransform: 'uppercase',
-    color: '#aeb6c5',
+    color: '#ACB5C3',
   },
   h6: {
-    color: '#292e5d',
+    fontFamily: 'CircularStd-Book',
+    fontSize: '0.875rem',
+    color: '#272C5E',
   },
   div: {
     display: 'flex',
     alignItems: 'center',
+    marginTop: '3px',
   },
 })(({ classes, data: { title, value, icon } }) => (
   <Box className={classes.box}>
     <Typography className={classes.subtitle2} variant="subtitle2">
       { title }
     </Typography>
-    <Typography className={classes.div} variant="div">
+    <Box className={classes.div}>
       { icon }
       <Typography className={classes.h6} variant="h6">
         { value }
       </Typography>
-    </Typography>
+    </Box>
   </Box>
 ));
 
 const AddInput = withStyles({
   root: {
-    backgroundColor: '#f5f6fa',
+    backgroundColor: '#F5F6FA',
     borderRadius: 15,
     padding: '5px 10px',
   },
@@ -158,12 +169,15 @@ const ContactPanel = ({ classes, item }) => {
           }}
         />
       </Container>
-      <Container className={classes.actionContainer}>
+      <Typography className={classes.email} variant="h6">
+        { item.email }
+      </Typography>
+      <Box className={classes.actionContainer}>
         <Invite variant="contained">Invite</Invite>
         <Cancel variant="contained">Cancel</Cancel>
         <Delete variant="contained">Delete</Delete>
-      </Container>
-      <Container className={classes.infoContainer}>
+      </Box>
+      <Box className={classes.infoContainer}>
         <InfoTabs
           style={{ alignSelf: 'flex-end' }}
           tabs={[
@@ -172,7 +186,7 @@ const ContactPanel = ({ classes, item }) => {
             { label: 'Messages 2' },
           ]}
           tabStyle={{
-            bgColor: '#f5f6fa',
+            bgColor: '#F5F6FA',
             selectedBgColor: '#ffffff',
             color: 'rgba(0,0,0,0.87)',
           }}
@@ -207,7 +221,7 @@ const ContactPanel = ({ classes, item }) => {
         <TabPanel value={index} index={2}>
           Message Panel
         </TabPanel>
-      </Container>
+      </Box>
       <AddTagPopover
         open={popover}
         anchorEl={anchorEl}

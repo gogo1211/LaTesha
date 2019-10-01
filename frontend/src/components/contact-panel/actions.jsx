@@ -5,30 +5,31 @@ const Action = withStyles({
   root: {
     boxShadow: 'none',
     textTransform: 'none',
-    margin: '0 10px',
-    padding: '8px 35px',
-    borderRadius: '10px',
-    fontSize: '1rem',
+    margin: '0 7.5px',
+    padding: '7px 25px',
+    borderRadius: '8px',
+    fontFamily: 'CircularStd-Medium',
+    fontSize: '0.75rem',
   },
 })(Button);
 
 export const Invite = withStyles({
   root: {
-    backgroundColor: '#ececf4',
-    color: '#444ea5',
+    backgroundColor: 'rgba(71,73,160,0.1)',
+    color: '#4749A0',
   },
 })(Action);
 
 export const Cancel = withStyles({
   root: {
-    backgroundColor: '#faeae8',
-    color: '#f07760',
+    backgroundColor: 'rgba(255,126,92,0.1)',
+    color: '#FF7E5C',
   },
 })(Action);
 
 export const Delete = withStyles({
   root: {
-    backgroundColor: '#faeae8',
-    color: '#ef3a39',
+    backgroundColor: 'rgba(255,76,67,0.1)',
+    color: '#ff4c43',
   },
 })(Action);

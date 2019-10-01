@@ -1,0 +1,4 @@
+@import './mixins';
+
+@include font('CircularStd-Book', './font/CircularStd-Book');
+@include font('CircularStd-Medium', './font/CircularStd-Medium');

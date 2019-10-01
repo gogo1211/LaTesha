@@ -23,10 +23,10 @@ const useTabStyles = makeStyles(() => {
     root: ({ bgColor }) => ({
       opacity: 1,
       overflow: 'initial',
-      padding: '10px 20px',
-      borderTopLeftRadius: 15,
-      borderTopRightRadius: 15,
-      color: '#aeb6c5',
+      padding: '10px 15px',
+      borderTopLeftRadius: 8,
+      borderTopRightRadius: 8,
+      color: '#ACB5C3',
       backgroundColor: bgColor,
       transition: '0.2s',
       minWidth: 72,
@@ -52,7 +52,7 @@ const useTabStyles = makeStyles(() => {
     }),
     selected: ({ selectedBgColor }) => ({
       backgroundColor: selectedBgColor,
-      color: '#292e5d',
+      color: '#272C5E',
       '& + $root': {
         zIndex: 1,
       },
@@ -62,9 +62,9 @@ const useTabStyles = makeStyles(() => {
     }),
     wrapper: {
       zIndex: 2,
-      marginTop: 4,
+      fontFamily: 'CircularStd-Medium',
       textTransform: 'initial',
-      fontSize: '1.125rem',
+      fontSize: '0.875rem',
     },
   };
 });
@@ -116,7 +116,7 @@ export const TabPanel = (props) => {
       {...other}
       style={{ backgroundColor: 'white' }}
     >
-      <Box p={2}>{children}</Box>
+      <Box p={1}>{children}</Box>
     </Typography>
   );
 };
