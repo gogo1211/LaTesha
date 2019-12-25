@@ -62,7 +62,7 @@ GEM
       mini_portile2 (~> 2.4.0)
     nokogiri (1.10.5-x86-mingw32)
       mini_portile2 (~> 2.4.0)
-    puma (3.12.1)
+    puma (3.12.2)
     rack (2.0.8)
     rack-cors (1.0.3)
     rack-test (1.1.0)
@@ -114,7 +114,7 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
-  puma (~> 3.7)
+  puma (~> 3.12)
   rack-cors
   rails (~> 5.1.7)
   tzinfo-data
